@@ -20,6 +20,7 @@ class BodySelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("Building $runtimeType");
     return Consumer<ProviderHome>(
       builder: (context, value, child) {
         return Padding(
