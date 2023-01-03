@@ -30,15 +30,13 @@ class _HomePageState extends State<HomePage> {
     return Consumer<ProviderHome>(builder: (context, value, child) {
       return Scaffold(
         key: _scaffoldKey,
-        body: Padding(
-            padding: const EdgeInsets.only(top: 40.0),
-            child: Column(
-              children: [
-                const TopNav(),
-                const BodySelect(),
-                getHomeBody(value)
-              ],
-            )),
+        body: Stack(
+          children: [
+            // const BodySelect(),
+            getHomeBody(value),
+            const TopNav()
+          ],
+        ),
       );
     });
   }

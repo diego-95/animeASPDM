@@ -1,4 +1,5 @@
 import 'package:anime_aspdm/managers/data_manager.dart';
+import 'package:anime_aspdm/pages/home/components/bodies/anime_body/components/anime_list.dart';
 import 'package:anime_aspdm/providers/provier_home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +20,28 @@ class _AnimeBodyState extends State<AnimeBody> {
     provider.updateTopAnimeAiring(animes);
   }
 
+  _getUpcoming(ProviderHome provider) async {
+    var animes = await dataManager.getTopUpcomingAnime();
+    provider.updateTopUpcomingAnime(animes);
+  }
+
+  _getMostPopular(ProviderHome provider) async {
+    var animes = await dataManager.getMostPopularAnime();
+    provider.updateMostPopularAnime(animes);
+  }
+
+  _getSeason(ProviderHome provider) async {
+    var animes = await dataManager.getSeasonAnime();
+    provider.updateSeasonAnime(animes);
+  }
+
   @override
   initState() {
     ProviderHome provider = Provider.of<ProviderHome>(context, listen: false);
+    _getSeason(provider);
     _getAiring(provider);
+    _getUpcoming(provider);
+    _getMostPopular(provider);
     super.initState();
   }
 
@@ -31,65 +50,42 @@ class _AnimeBodyState extends State<AnimeBody> {
     debugPrint("Building $runtimeType");
     return Consumer<ProviderHome>(
       builder: (context, value, child) {
-        return Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
-                  child: Text("Top Anime Airing:",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                ),
-                SizedBox(
-                  height: 290,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: value.topAnimeAiring.length,
-                      itemBuilder: (ctx, i) {
-                        var item = value.topAnimeAiring[i];
-                        return Center(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Container(
-                                width: 150,
-                                height: 266,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10.0)),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.black.withOpacity(.75),
-                                          spreadRadius: 2,
-                                          blurRadius: 5,
-                                          offset: const Offset(0, 2))
-                                    ],
-                                    image: DecorationImage(
-                                        colorFilter: ColorFilter.mode(
-                                            Colors.black.withOpacity(.35),
-                                            BlendMode.darken),
-                                        image: NetworkImage(item.imageUrl,
-                                            scale: 3),
-                                        fit: BoxFit.fill,
-                                        alignment: Alignment.center)),
-                                child: Center(
-                                    child: Text(
-                                  item.title,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14),
-                                ))),
-                          ),
-                        );
-                      }),
-                ),
-              ],
-            ),
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 100),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
+                child: Text("Current Season Anime:",
+                    style:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              ),
+              AnimeList(animes: value.seasonAnime),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
+                child: Text("Top Anime Airing:",
+                    style:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              ),
+              AnimeList(animes: value.topAiringAnime),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
+                child: Text("Top Upcoming Anime:",
+                    style:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              ),
+              AnimeList(animes: value.topUpcomingAnime),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
+                child: Text("Most Popular Anime:",
+                    style:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              ),
+              AnimeList(animes: value.mostPopularAnime)
+            ],
           ),
         );
       },

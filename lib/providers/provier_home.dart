@@ -4,10 +4,16 @@ import 'package:jikan_api/jikan_api.dart';
 
 class ProviderHome extends ChangeNotifier {
   HomeBodyType _homeBodyType = HomeBodyType.anime;
-  List<Anime> _topAnimeAiring = [];
+  List<Anime> _topAiringAnime = [];
+  List<Anime> _topUpcomingAnime = [];
+  List<Anime> _mostPopularAnime = [];
+  List<Anime> _seasonAnime = [];
 
   HomeBodyType get homeBodyType => _homeBodyType;
-  List<Anime> get topAnimeAiring => _topAnimeAiring;
+  List<Anime> get topAiringAnime => _topAiringAnime;
+  List<Anime> get topUpcomingAnime => _topUpcomingAnime;
+  List<Anime> get mostPopularAnime => _mostPopularAnime;
+  List<Anime> get seasonAnime => _seasonAnime;
 
   updateHomeBodyType(HomeBodyType newValue) {
     _homeBodyType = newValue;
@@ -15,7 +21,22 @@ class ProviderHome extends ChangeNotifier {
   }
 
   updateTopAnimeAiring(List<Anime> newValues) {
-    _topAnimeAiring = newValues;
+    _topAiringAnime = newValues;
+    notifyListeners();
+  }
+
+  updateTopUpcomingAnime(List<Anime> newValues) {
+    _topUpcomingAnime = newValues;
+    notifyListeners();
+  }
+
+  updateMostPopularAnime(List<Anime> newValues) {
+    _mostPopularAnime = newValues;
+    notifyListeners();
+  }
+
+  updateSeasonAnime(List<Anime> newValues) {
+    _seasonAnime = newValues;
     notifyListeners();
   }
 }

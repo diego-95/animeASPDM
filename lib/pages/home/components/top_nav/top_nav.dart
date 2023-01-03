@@ -15,7 +15,7 @@ class _TopNavState extends State<TopNav> {
   Widget build(BuildContext context) {
     debugPrint("Building $runtimeType");
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.only(left: 20.0, right: 20, top: 40),
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white,
