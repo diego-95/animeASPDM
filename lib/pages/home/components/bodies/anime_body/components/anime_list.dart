@@ -17,7 +17,11 @@ class AnimeList extends StatelessWidget {
           itemCount: animes.length,
           itemBuilder: (ctx, i) {
             var item = animes[i];
-            return AnimeCard(anime: item);
+            return Center(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: AnimeCard(anime: item),
+            ));
           }),
     );
   }

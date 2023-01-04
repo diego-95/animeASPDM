@@ -46,4 +46,12 @@ class DataManager {
     }
     return results;
   }
+
+  Future<Anime> getAnimeDetails(int id) async {
+    Anime result;
+    try {
+      result = await api.getAnime(id);
+    } finally {}
+    return result;
+  }
 }

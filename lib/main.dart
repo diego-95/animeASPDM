@@ -1,4 +1,5 @@
 import 'package:anime_aspdm/pages/home/home.dart';
+import 'package:anime_aspdm/providers/provider_details.dart';
 import 'package:anime_aspdm/providers/provier_home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<ProviderHome>(
-            create: (context) => ProviderHome())
+            create: (context) => ProviderHome()),
+        ChangeNotifierProvider<ProviderDetails>(
+          create: ((context) => ProviderDetails()),
+        )
       ],
       child: MaterialApp(
         title: 'Animes',

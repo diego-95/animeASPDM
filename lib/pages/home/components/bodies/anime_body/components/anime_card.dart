@@ -1,3 +1,4 @@
+import 'package:anime_aspdm/pages/anime_details/anime_details.dart';
 import 'package:flutter/material.dart';
 import 'package:jikan_api/jikan_api.dart';
 
@@ -6,39 +7,48 @@ class AnimeCard extends StatelessWidget {
 
   final Anime anime;
 
+  void openDetails(BuildContext context) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: ((context) => AnimeDetails(anime: anime))));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Container(
-            width: 150,
-            height: 266,
-            decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(.75),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: const Offset(0, 2))
-                ],
-                image: DecorationImage(
-                    colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(.35), BlendMode.darken),
-                    image: NetworkImage(anime.imageUrl),
-                    fit: BoxFit.fill,
-                    alignment: Alignment.center)),
-            child: Center(
-                child: Text(
-              anime.title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14),
-            ))),
-      ),
+    return InkWell(
+      onTap: () {
+        openDetails(context);
+      },
+      child: Ink(
+          width: 150,
+          height: 266,
+          decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withOpacity(.75),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2))
+              ],
+              image: DecorationImage(
+                  colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(.35), BlendMode.darken),
+                  image: NetworkImage(anime.imageUrl),
+                  fit: BoxFit.fill,
+                  alignment: Alignment.center)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                anime.titleEnglish ?? anime.title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14),
+              ),
+            ],
+          )),
     );
   }
 }

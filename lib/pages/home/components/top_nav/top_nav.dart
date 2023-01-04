@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class TopNav extends StatefulWidget {
   const TopNav({Key? key}) : super(key: key);
@@ -19,7 +16,7 @@ class _TopNavState extends State<TopNav> {
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             boxShadow: [
               BoxShadow(
                   color: Colors.grey.withOpacity(0.25),
