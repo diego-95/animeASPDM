@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 // API https://docs.api.jikan.moe/#section/Information
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

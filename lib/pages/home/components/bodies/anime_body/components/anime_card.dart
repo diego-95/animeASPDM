@@ -1,6 +1,9 @@
+import 'package:anime_aspdm/models/anime_details_body_type.dart';
 import 'package:anime_aspdm/pages/anime_details/anime_details.dart';
+import 'package:anime_aspdm/providers/provider_details.dart';
 import 'package:flutter/material.dart';
 import 'package:jikan_api/jikan_api.dart';
+import 'package:provider/provider.dart';
 
 class AnimeCard extends StatelessWidget {
   const AnimeCard({Key? key, required this.anime}) : super(key: key);
@@ -8,6 +11,8 @@ class AnimeCard extends StatelessWidget {
   final Anime anime;
 
   void openDetails(BuildContext context) {
+    Provider.of<ProviderDetails>(context, listen: false)
+        .updateAnimeDetailsBodyType(AnimeDetailsBodyType.information);
     Navigator.push(context,
         MaterialPageRoute(builder: ((context) => AnimeDetails(anime: anime))));
   }

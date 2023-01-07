@@ -7,8 +7,10 @@ import 'package:jikan_api/jikan_api.dart';
 import 'package:provider/provider.dart';
 
 class AnimeDetailsBody extends StatefulWidget {
-  const AnimeDetailsBody({Key? key, required this.anime}) : super(key: key);
+  const AnimeDetailsBody({Key? key, required this.anime, required this.trailer})
+      : super(key: key);
   final Anime anime;
+  final Widget trailer;
   @override
   State<AnimeDetailsBody> createState() => _AnimeDetailsBodyState();
 }
@@ -23,7 +25,7 @@ class _AnimeDetailsBodyState extends State<AnimeDetailsBody> {
       case AnimeDetailsBodyType.information:
         return AnimeDetailsInformation(anime: widget.anime);
       case AnimeDetailsBodyType.trailer:
-        return Container();
+        return widget.trailer;
     }
   }
 
