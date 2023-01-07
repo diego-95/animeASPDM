@@ -1,6 +1,6 @@
+import 'package:anime_aspdm/drawers/background_drawer.dart';
 import 'package:anime_aspdm/models/home_body_type.dart';
 import 'package:anime_aspdm/pages/home/components/bodies/anime_body/anime_body.dart';
-import 'package:anime_aspdm/pages/home/components/body_select/body_select.dart';
 import 'package:anime_aspdm/pages/home/components/top_nav/top_nav.dart';
 import 'package:anime_aspdm/providers/provier_home.dart';
 import 'package:flutter/material.dart';
@@ -22,18 +22,26 @@ class _HomePageState extends State<HomePage> {
         : Container();
   }
 
+  List<Widget> getStack(ProviderHome provider) {
+    return provider.showDrawer
+        ? [
+            getHomeBody(provider),
+            const BackgroundDrawer(),
+            const TopNav(),
+          ]
+        : [getHomeBody(provider), const TopNav()];
+  }
+
   @override
   Widget build(BuildContext context) {
     debugPrint("Building $runtimeType");
     return Consumer<ProviderHome>(builder: (context, value, child) {
       return Scaffold(
         key: _scaffoldKey,
-        body: Stack(
-          children: [
-            // const BodySelect(),
-            getHomeBody(value),
-            const TopNav()
-          ],
+        body: SafeArea(
+          child: Stack(
+            children: getStack(value),
+          ),
         ),
       );
     });
