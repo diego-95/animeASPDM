@@ -1,5 +1,6 @@
+import 'package:anime_aspdm/models/home_body_type.dart';
 import 'package:anime_aspdm/pages/home/components/top_nav/drawer_row.dart';
-import 'package:anime_aspdm/providers/provier_home.dart';
+import 'package:anime_aspdm/providers/provider_home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -50,10 +51,30 @@ class _TopNavState extends State<TopNav> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  DrawerRow(text: "Home", icon: Icons.home),
-                  DrawerRow(text: "Search Anime", icon: Icons.search),
-                  DrawerRow(text: "Dark Mode", icon: Icons.dark_mode),
-                  DrawerRow(text: "Login", icon: Icons.account_circle),
+                  DrawerRow(
+                    text: "Home",
+                    icon: Icons.home,
+                    selected: provider.homeBodyType == HomeBodyType.home,
+                    onTap: () => provider.updateHomeBodyType(HomeBodyType.home),
+                  ),
+                  DrawerRow(
+                      text: "Search Anime",
+                      icon: Icons.search,
+                      selected: provider.homeBodyType == HomeBodyType.search,
+                      onTap: () =>
+                          provider.updateHomeBodyType(HomeBodyType.search)),
+                  DrawerRow(
+                      text: "Settings",
+                      icon: Icons.settings,
+                      selected: provider.homeBodyType == HomeBodyType.settings,
+                      onTap: () =>
+                          provider.updateHomeBodyType(HomeBodyType.settings)),
+                  DrawerRow(
+                      text: "Login",
+                      icon: Icons.account_circle,
+                      selected: provider.homeBodyType == HomeBodyType.user,
+                      onTap: () =>
+                          provider.updateHomeBodyType(HomeBodyType.user)),
                 ],
               ),
             )

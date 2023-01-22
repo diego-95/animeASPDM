@@ -2,11 +2,26 @@ import 'package:flutter/material.dart';
 
 class DrawerRow extends StatelessWidget {
   const DrawerRow(
-      {Key? key, required this.text, required this.icon, this.onTap})
+      {Key? key,
+      required this.text,
+      required this.icon,
+      required this.selected,
+      this.onTap})
       : super(key: key);
   final String text;
   final IconData icon;
+  final bool selected;
   final void Function()? onTap;
+
+  BoxDecoration? getBoxDecoration() {
+    if (selected) {
+      return const BoxDecoration(
+          color: Colors.orange,
+          borderRadius: BorderRadius.all(Radius.circular(45)));
+    } else {
+      return null;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +32,11 @@ class DrawerRow extends StatelessWidget {
           borderOnForeground: true,
           color: Colors.transparent,
           child: Ink(
-            decoration: const BoxDecoration(
-                color: Colors.orange,
-                borderRadius: BorderRadius.all(Radius.circular(45))),
+            decoration: getBoxDecoration(),
             child: InkWell(
               customBorder: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(45))),
-              onTap: () {},
+              onTap: onTap,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Row(
@@ -34,15 +47,15 @@ class DrawerRow extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 16, right: 24),
                       child: Icon(
                         icon,
-                        color: Colors.white,
+                        color: selected ? Colors.white : Colors.black,
                         size: 24,
                       ),
                     ),
                     Text(
                       text,
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 16,
-                          color: Colors.white,
+                          color: selected ? Colors.white : Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
                   ],

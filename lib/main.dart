@@ -1,6 +1,8 @@
 import 'package:anime_aspdm/pages/home/home.dart';
+import 'package:anime_aspdm/providers/provider_anime.dart';
 import 'package:anime_aspdm/providers/provider_details.dart';
-import 'package:anime_aspdm/providers/provier_home.dart';
+import 'package:anime_aspdm/providers/provider_home.dart';
+import 'package:anime_aspdm/providers/provider_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +22,10 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<ProviderHome>(
             create: (context) => ProviderHome()),
+        ChangeNotifierProvider<ProviderAnime>(
+            create: (context) => ProviderAnime()),
+        ChangeNotifierProvider<ProviderSearch>(
+            create: (context) => ProviderSearch()),
         ChangeNotifierProvider<ProviderDetails>(
           create: ((context) => ProviderDetails()),
         )

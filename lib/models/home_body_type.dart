@@ -1,1 +1,1 @@
-enum HomeBodyType { anime, manga }
+enum HomeBodyType { home, search, settings, user }

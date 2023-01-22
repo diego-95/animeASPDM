@@ -1,6 +1,6 @@
 import 'package:anime_aspdm/managers/data_manager.dart';
 import 'package:anime_aspdm/pages/home/components/bodies/anime_body/components/anime_list.dart';
-import 'package:anime_aspdm/providers/provier_home.dart';
+import 'package:anime_aspdm/providers/provider_anime.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,29 +15,29 @@ class AnimeBody extends StatefulWidget {
 class _AnimeBodyState extends State<AnimeBody> {
   DataManager dataManager = DataManager();
 
-  _getAiring(ProviderHome provider) async {
+  _getAiring(ProviderAnime provider) async {
     var animes = await dataManager.getTopAiringAnime();
     provider.updateTopAnimeAiring(animes);
   }
 
-  _getUpcoming(ProviderHome provider) async {
+  _getUpcoming(ProviderAnime provider) async {
     var animes = await dataManager.getTopUpcomingAnime();
     provider.updateTopUpcomingAnime(animes);
   }
 
-  _getMostPopular(ProviderHome provider) async {
+  _getMostPopular(ProviderAnime provider) async {
     var animes = await dataManager.getMostPopularAnime();
     provider.updateMostPopularAnime(animes);
   }
 
-  _getSeason(ProviderHome provider) async {
+  _getSeason(ProviderAnime provider) async {
     var animes = await dataManager.getSeasonAnime();
     provider.updateSeasonAnime(animes);
   }
 
   @override
   initState() {
-    ProviderHome provider = Provider.of<ProviderHome>(context, listen: false);
+    ProviderAnime provider = Provider.of<ProviderAnime>(context, listen: false);
     _getSeason(provider);
     _getAiring(provider);
     _getUpcoming(provider);
@@ -48,7 +48,7 @@ class _AnimeBodyState extends State<AnimeBody> {
   @override
   Widget build(BuildContext context) {
     debugPrint("Building $runtimeType");
-    return Consumer<ProviderHome>(
+    return Consumer<ProviderAnime>(
       builder: (context, value, child) {
         return SingleChildScrollView(
           child: Column(

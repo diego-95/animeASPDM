@@ -7,7 +7,7 @@ class DataManager {
     List<Anime> results = [];
     try {
       final topAnimes = await api.getTopAnime(subtype: TopSubtype.airing);
-      results = topAnimes.asList();
+      results = topAnimes.toList();
     } catch (error) {
       results = [];
     }
@@ -18,7 +18,7 @@ class DataManager {
     List<Anime> results = [];
     try {
       final seasonAnimes = await api.getSeason();
-      results = seasonAnimes.asList();
+      results = seasonAnimes.toList();
     } catch (error) {
       results = [];
     }
@@ -29,7 +29,7 @@ class DataManager {
     List<Anime> results = [];
     try {
       final topAnimes = await api.getTopAnime(subtype: TopSubtype.upcoming);
-      results = topAnimes.asList();
+      results = topAnimes.toList();
     } catch (error) {
       results = [];
     }
@@ -40,7 +40,7 @@ class DataManager {
     List<Anime> results = [];
     try {
       final topAnimes = await api.getTopAnime(subtype: TopSubtype.bypopularity);
-      results = topAnimes.asList();
+      results = topAnimes.toList();
     } catch (error) {
       results = [];
     }
@@ -53,5 +53,27 @@ class DataManager {
       result = await api.getAnime(id);
     } finally {}
     return result;
+  }
+
+  Future<List<Genre>> getGenres() async {
+    List<Genre> result;
+    try {
+      final genres = await api.getAnimeGenres();
+      result = genres.toList();
+    } catch (error) {
+      result = [];
+    }
+    return result;
+  }
+
+  Future<List<Anime>> searchAnime(String? query, List<int>? genres) async {
+    List<Anime> results = [];
+    try {
+      final topAnimes = await api.searchAnime(query: query, genres: genres);
+      results = topAnimes.toList();
+    } catch (error) {
+      results = [];
+    }
+    return results;
   }
 }
