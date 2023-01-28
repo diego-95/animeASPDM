@@ -33,9 +33,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Animes',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData(primarySwatch: Colors.blue, fontFamily: "Ubuntu"),
         home: const HomePage(),
       ),
     );

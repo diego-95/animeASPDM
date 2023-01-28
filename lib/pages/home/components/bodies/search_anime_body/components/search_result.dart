@@ -35,12 +35,12 @@ class SearchResult extends StatelessWidget {
               ],
               borderRadius: const BorderRadius.all(Radius.circular(15))),
           child: SizedBox(
-            height: 250,
+            height: 200,
             child: Row(
               children: [
                 Container(
-                  width: 160,
-                  height: 250,
+                  width: 130,
+                  height: 200,
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(13),
