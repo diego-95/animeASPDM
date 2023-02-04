@@ -1,6 +1,7 @@
 import 'package:anime_aspdm/models/anime_details_body_type.dart';
 import 'package:anime_aspdm/pages/anime_details/anime_details.dart';
 import 'package:anime_aspdm/providers/provider_details.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +39,7 @@ class AnimeCard extends StatelessWidget {
               image: DecorationImage(
                   colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(.35), BlendMode.darken),
-                  image: NetworkImage(anime.imageUrl),
+                  image: CachedNetworkImageProvider(anime.imageUrl),
                   fit: BoxFit.fill,
                   alignment: Alignment.center)),
           child: Column(

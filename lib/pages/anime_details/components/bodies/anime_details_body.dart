@@ -2,6 +2,7 @@ import 'package:anime_aspdm/models/anime_details_body_type.dart';
 import 'package:anime_aspdm/pages/anime_details/components/bodies/components/anime_details_information.dart';
 import 'package:anime_aspdm/pages/anime_details/components/bodies/components/anime_details_select.dart';
 import 'package:anime_aspdm/providers/provider_details.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'package:provider/provider.dart';
@@ -41,9 +42,16 @@ class _AnimeDetailsBodyState extends State<AnimeDetailsBody> {
               height: 200,
               child: Row(
                 children: [
-                  ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      child: Image(image: NetworkImage(widget.anime.imageUrl))),
+                  SizedBox(
+                    width: 128,
+                    child: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        child: CachedNetworkImage(
+                          imageUrl: widget.anime.imageUrl,
+                          fit: BoxFit.fill,
+                        )),
+                  ),
                   Flexible(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0),

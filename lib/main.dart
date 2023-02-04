@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'package:anime_aspdm/models/type_adapters/anime_adapter.dart';
+import 'package:anime_aspdm/models/type_adapters/meta_adapter.dart';
+import 'package:anime_aspdm/models/type_adapters/user_adapter.dart';
 import 'package:anime_aspdm/pages/home/home.dart';
 import 'package:anime_aspdm/providers/provider_anime.dart';
 import 'package:anime_aspdm/providers/provider_details.dart';
@@ -6,9 +10,20 @@ import 'package:anime_aspdm/providers/provider_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:hive_flutter/hive_flutter.dart';
+
 // API https://docs.api.jikan.moe/#section/Information
-void main() {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  Directory directory = await path_provider.getApplicationDocumentsDirectory();
+  await Hive.initFlutter(directory.path);
+
+  Hive.registerAdapter(UserAdapter());
+  Hive.registerAdapter(AnimeAdapter());
+  Hive.registerAdapter(MetaAdapter());
+
   runApp(const MyApp());
 }
 

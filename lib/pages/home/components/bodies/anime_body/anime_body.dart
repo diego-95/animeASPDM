@@ -16,22 +16,22 @@ class _AnimeBodyState extends State<AnimeBody> {
   DataManager dataManager = DataManager();
 
   _getAiring(ProviderAnime provider) async {
-    var animes = await dataManager.getTopAiringAnime();
+    var animes = await dataManager.getTopAiringAnime(true);
     provider.updateTopAnimeAiring(animes);
   }
 
   _getUpcoming(ProviderAnime provider) async {
-    var animes = await dataManager.getTopUpcomingAnime();
+    var animes = await dataManager.getTopUpcomingAnime(true);
     provider.updateTopUpcomingAnime(animes);
   }
 
   _getMostPopular(ProviderAnime provider) async {
-    var animes = await dataManager.getMostPopularAnime();
+    var animes = await dataManager.getMostPopularAnime(true);
     provider.updateMostPopularAnime(animes);
   }
 
   _getSeason(ProviderAnime provider) async {
-    var animes = await dataManager.getSeasonAnime();
+    var animes = await dataManager.getSeasonAnime(true);
     provider.updateSeasonAnime(animes);
   }
 
