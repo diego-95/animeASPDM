@@ -37,7 +37,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
     super.dispose();
   }
 
-  Widget getBody(Widget? player) {
+  Widget getBody(Widget? player, BuildContext context) {
     Widget trailerWidget;
     if (widget.anime.trailerUrl != null) {
       trailerWidget = Padding(
@@ -50,12 +50,23 @@ class _AnimeDetailsState extends State<AnimeDetails> {
       trailerWidget =
           (const Expanded(child: Center(child: Text("No trailer available"))));
     }
-    return Column(children: [
-      const TopNav(),
-      Expanded(
-        child: AnimeDetailsBody(anime: widget.anime, trailer: trailerWidget),
-      )
-    ]);
+    if (MediaQuery.of(context).orientation == Orientation.portrait) {
+      return Column(children: [
+        const TopNav(),
+        Expanded(
+          child: AnimeDetailsBody(anime: widget.anime, trailer: trailerWidget),
+        )
+      ]);
+    } else {
+      return Column(children: [
+        const TopNav(),
+        Expanded(
+          child: SingleChildScrollView(
+              child: AnimeDetailsBody(
+                  anime: widget.anime, trailer: trailerWidget)),
+        )
+      ]);
+    }
   }
 
   @override
@@ -73,9 +84,9 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                     controller: _controller,
                   ),
                   builder: (context, player) {
-                    return getBody(player);
+                    return getBody(player, context);
                   })
-              : getBody(null));
+              : getBody(null, context));
     });
   }
 }

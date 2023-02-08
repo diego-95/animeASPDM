@@ -16,9 +16,10 @@ class _TopNavState extends State<TopNav> {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
       const Icon(
         Icons.account_circle,
+        color: Colors.orange,
         size: 34,
       ),
-      const Text("Hi Guest, please log-in", style: TextStyle(fontSize: 16)),
+      const Text("Hi Friend, welcome back!", style: TextStyle(fontSize: 16)),
       IconButton(
         splashRadius: 24,
         constraints: const BoxConstraints(maxHeight: 24, maxWidth: 24),
@@ -62,19 +63,7 @@ class _TopNavState extends State<TopNav> {
                       icon: Icons.search,
                       selected: provider.homeBodyType == HomeBodyType.search,
                       onTap: () =>
-                          provider.updateHomeBodyType(HomeBodyType.search)),
-                  DrawerRow(
-                      text: "Settings",
-                      icon: Icons.settings,
-                      selected: provider.homeBodyType == HomeBodyType.settings,
-                      onTap: () =>
-                          provider.updateHomeBodyType(HomeBodyType.settings)),
-                  DrawerRow(
-                      text: "Login",
-                      icon: Icons.account_circle,
-                      selected: provider.homeBodyType == HomeBodyType.user,
-                      onTap: () =>
-                          provider.updateHomeBodyType(HomeBodyType.user)),
+                          provider.updateHomeBodyType(HomeBodyType.search))
                 ],
               ),
             )

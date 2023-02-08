@@ -38,8 +38,30 @@ class _SearchAnimeBodyState extends State<SearchAnimeBody> {
     super.initState();
   }
 
-  List<Widget> renderResults(ProviderSearch provider) {
-    return provider.animes.map((e) => SearchResult(anime: e)).toList();
+  List<Widget> renderResults(ProviderSearch provider, BuildContext context) {
+    if (MediaQuery.of(context).orientation == Orientation.landscape) {
+      List<Widget> result = [];
+      int i = 0;
+      while (i < provider.animes.length) {
+        List<Widget> temp = [];
+        temp.add(Flexible(child: SearchResult(anime: provider.animes[i])));
+        i++;
+        if (i < provider.animes.length) {
+          temp.add(Flexible(child: SearchResult(anime: provider.animes[i])));
+          i++;
+        } else {
+          temp.add(const Flexible(
+            child: SizedBox(),
+          ));
+        }
+        result.add(Row(
+          children: temp,
+        ));
+      }
+      return result;
+    } else {
+      return provider.animes.map((e) => SearchResult(anime: e)).toList();
+    }
   }
 
   @override
@@ -56,7 +78,7 @@ class _SearchAnimeBodyState extends State<SearchAnimeBody> {
                 textEditingController: searchEditor,
                 search: () => _searchAnime(provider)),
           ),
-          ...renderResults(provider)
+          ...renderResults(provider, context)
         ]),
       );
     });

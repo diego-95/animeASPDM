@@ -17,7 +17,7 @@ class ProviderHome extends ChangeNotifier {
 
   updateShowDrawer(bool newValue) {
     _showDrawer = newValue;
-    _drawerHeight = newValue ? 350 : 50;
+    _drawerHeight = newValue ? 180 : 50;
     notifyListeners();
   }
 }

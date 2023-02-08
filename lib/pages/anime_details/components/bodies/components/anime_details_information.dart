@@ -90,19 +90,32 @@ class AnimeDetailsInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            renderScoreBar(),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Text(anime.synopsis ?? ''),
-            ),
-          ],
+    if (MediaQuery.of(context).orientation == Orientation.landscape) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          renderScoreBar(),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(anime.synopsis ?? ''),
+          ),
+        ],
+      );
+    } else {
+      return Expanded(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              renderScoreBar(),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Text(anime.synopsis ?? ''),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 }

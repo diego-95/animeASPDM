@@ -24,7 +24,6 @@ class DataManager {
           results = sourceData.toList();
           box.addAll(mapperTToH(results));
         } catch (error) {
-          debugPrint('onErrorLoadingNewData');
           results = [];
           err = true;
         }

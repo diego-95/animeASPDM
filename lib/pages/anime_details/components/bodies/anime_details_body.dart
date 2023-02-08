@@ -33,60 +33,117 @@ class _AnimeDetailsBodyState extends State<AnimeDetailsBody> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ProviderDetails>(builder: (context, value, child) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 8.0),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(children: [
-            SizedBox(
-              height: 200,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 128,
-                    child: ClipRRect(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                        child: CachedNetworkImage(
-                          imageUrl: widget.anime.imageUrl,
-                          fit: BoxFit.fill,
-                        )),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.anime.titleEnglish ?? widget.anime.title,
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            widget.anime.titleJapanese ?? widget.anime.title,
-                            style: const TextStyle(color: Colors.grey),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text(getGenres()),
-                          )
-                        ],
-                      ),
+      if (MediaQuery.of(context).orientation == Orientation.landscape) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(children: [
+              SizedBox(
+                height: 200,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 128,
+                      child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          child: CachedNetworkImage(
+                            imageUrl: widget.anime.imageUrl,
+                            fit: BoxFit.fill,
+                          )),
                     ),
-                  )
-                ],
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.anime.titleEnglish ?? widget.anime.title,
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              widget.anime.titleJapanese ?? widget.anime.title,
+                              style: const TextStyle(color: Colors.grey),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Text(getGenres()),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0),
-              child: AnimeDetailsSelect(),
-            ),
-            getBody(value)
-          ]),
-        ),
-      );
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                child: AnimeDetailsSelect(),
+              ),
+              getBody(value)
+            ]),
+          ),
+        );
+      } else {
+        return Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(children: [
+              SizedBox(
+                height: 200,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 128,
+                      child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          child: CachedNetworkImage(
+                            imageUrl: widget.anime.imageUrl,
+                            fit: BoxFit.fill,
+                          )),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.anime.titleEnglish ?? widget.anime.title,
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              widget.anime.titleJapanese ?? widget.anime.title,
+                              style: const TextStyle(color: Colors.grey),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Text(getGenres()),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                child: AnimeDetailsSelect(),
+              ),
+              getBody(value)
+            ]),
+          ),
+        );
+      }
     });
   }
 }
