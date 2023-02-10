@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:hive_flutter/hive_flutter.dart';
 
-// API https://docs.api.jikan.moe/#section/Information
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
