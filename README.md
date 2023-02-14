@@ -61,3 +61,7 @@ Lo sviluppo è avvenuto interamente tramite emulatore Android, utilizzando si la
 ## Comportamenti anomali
 
 Nonostante la gestione dei possibili errori tramite l'utilizzao di try catch, abbiamo notato la comparsa di eventuali messaggi di errore in console ma che non hanno mai comportato un blocco o un crash dell'applicativo.
+
+## Possibili sviluppi futuri
+
+Per poter ampliare l'applicazione sono state previste altri due bodies, uno per eventuali impostazioni ed uno per la gestione utente, come preferiti e gestione di più profili.
